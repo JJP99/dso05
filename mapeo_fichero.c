@@ -21,7 +21,7 @@ char buf[256];
 fd=open("prueba.out", O_RDWR | O_CREAT , (mode_t)0600);
  
 pagesize = getpagesize();
-
+ 
 /* mapeamos la primer paǵina del fichero en memoria */
 /* si accedemos a espacio fuera del tamaño real del fichero -> SEG FAULT */
 datos = mmap(NULL, pagesize /*tamaño*/, PROT_WRITE | PROT_READ, MAP_SHARED, fd , 0 /*offset*/);
@@ -33,10 +33,10 @@ for(i=0; i<5; i++) write(1,datos+i,1);
 strcpy(datos,"Hello");
 
 /* leemos del fichero */
-read(fd,buf,5);
+read(fd,buf,6);
 
 /* pintamos la lectura del fichero */
-printf("%s\n",buf);
+printf("\n%s\n",buf);
 
 /* libreamos el mapeo de memoria y cerramos el fichero */
 munmap(datos,pagesize);
