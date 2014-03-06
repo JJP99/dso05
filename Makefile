@@ -1,3 +1,4 @@
+# otro comentario
 # Sencillo Makefile usando una regla "patrón"
 # almoadilla para poner comentarios
 
