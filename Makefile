@@ -2,8 +2,6 @@
 # Sencillo Makefile usando una regla "patrón"
 # almoadilla para poner comentarios
 
-#algo
-
 CC=gcc
 PROGS=E_S_fichero mapeo_fichero poker_llamadas
 
