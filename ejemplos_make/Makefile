@@ -34,7 +34,7 @@ $(bin_dir)/$(ejecutable)_sh: $(fuentes)
 	
 
 $(bin_dir)/$(ejecutable)_st: $(fuentes)
-	$(CC) -o $@ $< $(CFLAGS) $(LDFLAGS) -lmi_libreria_static
+	$(CC) -o $@ $< $(CFLAGS) $(LDFLAGS) -lmi_libreria_static -static
 
 clean: 
 	make -C $(source_lib) clean
