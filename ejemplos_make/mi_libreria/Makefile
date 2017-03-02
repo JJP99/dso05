@@ -5,7 +5,7 @@ AR=ar
 
 lib_dir=../lib
 
-CFLAGS= -O3
+CFLAGS= -O3 -fPIC
 
 
 .PHONY: shared static clean      # estos no son ficheros
