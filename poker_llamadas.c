@@ -25,26 +25,26 @@ res=syscall(SYS_write, STDOUT_FILENO, "Salida syscall() desde C\n", 25);  // SYS
 
 #if defined(__x86_64__) || defined(__i386__)  // Intel x32 & x64
 // usa ensamblador para hacer la llamada al sistema con la interrupción 80 hex 
-asm("mov $1,  %%eax \n\t"
+asm("mov %1,  %%eax \n\t"
     "mov $1,  %%ebx \n\t" 
     "mov %k0, %%ecx \n\t" 
     "mov $35, %%edx \n\t"
     "int $0x80 \n\t" 
  	: // sin salida
-	: "r" (mensaje1)  // entrada mensaje en %0 para lectura 
+	: "r" (mensaje1), "r" (SYS_write)  // variables de entrada
 	: "%eax", "%ebx", "%ecx", "%edx"   // registros usados para que el compilador lo sepa 
     );
 #endif
 
 #ifdef __arm__  // ARM
 // usa ensamblador para hacer la llamada al sistema con la interrupción  swi/svc 
-asm( "mov r7 , #4 \n\t"   
+asm( "mov r7 , %1 \n\t"   
      "mov r2 , #35 \n\t"   
      "mov r1 , %0 \n\t"   
      "mov r0 , #1 \n\t"   
      "svc 0\n\t"
 	:
-	: "r" (mensaje2)
+	: "r" (mensaje2), "r" (SYS_write)
         : "r0", "r1", "r2", "r7"
 );
 
