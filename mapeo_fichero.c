@@ -18,7 +18,7 @@ char *datos;
 char buf[256];
 
 /* abrimos el fichero */
-fd=open("prueba.txt", O_RDWR | O_CREAT , (mode_t)0600);
+fd=open("prueba.out", O_RDWR | O_CREAT , (mode_t)0600);
  
 pagesize = getpagesize();
  
