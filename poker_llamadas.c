@@ -38,9 +38,9 @@ asm("mov $4  , %%eax \n\t"
 #elif defined( __arm__ )  // ARM
 // usa ensamblador para hacer la llamada al sistema con la interrupción  swi/svc 
 asm( "mov r7 , #4  \n\t"   
-     "mov r2 , #35 \n\t"   
-     "mov r1 , %0  \n\t"   
      "mov r0 , #1  \n\t"   
+     "mov r1 , %0  \n\t"   
+     "mov r2 , #35 \n\t"   
      "svc 0        \n\t"
          :: "r" (mensaje2)
          : "r0", "r1", "r2", "r7"
