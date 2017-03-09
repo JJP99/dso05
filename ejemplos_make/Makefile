@@ -29,11 +29,11 @@ build_lib_sh:
 build_lib_st:
 	make -C $(source_lib) static
 
-$(bin_dir)/$(ejecutable)_sh: $(fuentes)
+$(bin_dir)/$(ejecutable)_sh: $(fuentes) $(lib_dir)/libmi_libreria.so
 	$(CC) -o $@ $< $(CFLAGS) $(LDFLAGS) -lmi_libreria
 	
 
-$(bin_dir)/$(ejecutable)_st: $(fuentes)
+$(bin_dir)/$(ejecutable)_st: $(fuentes) $(lib_dir)/libmi_libreria_static.a
 	$(CC) -o $@ $< $(CFLAGS) $(LDFLAGS) -lmi_libreria_static -static
 
 clean: 
