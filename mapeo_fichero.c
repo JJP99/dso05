@@ -10,7 +10,7 @@
 #include <sys/mman.h>
 
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 int fd;
 int i, pagesize;

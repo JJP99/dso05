@@ -7,7 +7,7 @@
 #include <string.h>
 #include <fcntl.h>
 
-main()
+int main()
 {
 
 FILE * f;

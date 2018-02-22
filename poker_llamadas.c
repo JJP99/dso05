@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/syscall.h>   /* For SYS_xxx definitions */
 
-main()
+int main()
 {
 int res;
 char * mensaje1="Salida write con int 80h desde asm\n";  /* tamaño 35 caracteres */
@@ -21,7 +21,7 @@ printf("Salida printf() desde C\n");
 write(STDOUT_FILENO, "Salida write() desde C\n", 23);   /* STDOUT_FILENO = 1 */
 
 /* ahora pinta usando la funcion de C en unistd.h que llama al sistema de forma genérica*/
-res=syscall(SYS_write, STDOUT_FILENO, "Salida syscall() desde C\n", 25);  // SYS_write = 1
+res=syscall(SYS_write, STDOUT_FILENO, "Salida syscall() desde C\n", 25);  // SYS_write = 4
 
 #if defined( __x86_64__ ) || defined( __i386__ )  // Intel x86 & x64
 // usa ensamblador para hacer la llamada al sistema con la interrupción 80 hex
@@ -42,7 +42,8 @@ asm( "mov r7 , #4  \n"
      "mov r1 , %0  \n"   
      "mov r2 , #35 \n"   
      "svc 0        \n"
-         :: "r" (mensaje2)
+         : // sin salida
+         : "r" (mensaje2)
          : "r0", "r1", "r2", "r7"
    );
 
