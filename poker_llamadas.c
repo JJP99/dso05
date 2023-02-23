@@ -14,14 +14,17 @@ char * mensaje2="Salida write con SWI/SVC desde asm\n";  /* tamaño 35 caractere
 
 /*Pinta por pantalla usando la librería de C stdio.h*/
 printf("Salida printf() desde C\n");
+fprintf(stderr, "Salida printf(stdout) desde C\n");
 
 /* para hacer flush:  fflush(stdout); */
 
 /* pinta por pantalla usando el envoltorio de la llamada al sistema en unistd.h */
 write(STDOUT_FILENO, "Salida write() desde C\n", 23);   /* STDOUT_FILENO = 1 */
+write(1, "Salida write() desde C\n", 23);
 
 /* ahora pinta usando la funcion de C en unistd.h que llama al sistema de forma genérica*/
 res=syscall(SYS_write, STDOUT_FILENO, "Salida syscall() desde C\n", 25);  // SYS_write = 4
+
 
 #if defined( __x86_64__ ) || defined( __i386__ )  // Intel x86 & x64
 // usa ensamblador para hacer la llamada al sistema con la interrupción 80 hex
